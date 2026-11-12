@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.5rem;
+
+  /* Layered surfaces — deeper than v1 */
+  --background: oklch(0.08 0.02 280);       /* #08080c */
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.13 0.02 280);              /* #0f0f17 */
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.18 0.02 280);           /* #16161f */
+  --popover-foreground: oklch(0.96 0 0);
+
+  /* Neutral primary (professional, clinical) */
+  --primary: oklch(0.96 0 0);
+  --primary-foreground: oklch(0.10 0.02 280);
+
+  /* Secondary / muted */
+  --secondary: oklch(0.20 0.02 280);
+  --secondary-foreground: oklch(0.96 0 0);
+  --muted: oklch(0.22 0.02 280);
+  --muted-foreground: oklch(0.64 0.02 280);
+
+  /* Violet accent (used for active/selected/focus/charts) */
+  --accent: oklch(0.62 0.24 295);            /* #8b5cf6 */
+  --accent-foreground: oklch(0.96 0 0);
+
+  /* Semantic */
+  --destructive: oklch(0.62 0.22 20);        /* #ef4444 */
+  --destructive-foreground: oklch(0.96 0 0);
+  --success: oklch(0.68 0.16 155);           /* #10b981 */
+  --warning: oklch(0.78 0.16 75);            /* #f59e0b */
+
+  /* Hairlines */
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.62 0.24 295);
+
+  /* Charts */
+  --chart-1: oklch(0.62 0.24 295);           /* violet */
+  --chart-2: oklch(0.68 0.16 155);           /* emerald */
+  --chart-3: oklch(0.78 0.16 75);            /* amber */
+  --chart-4: oklch(0.62 0.22 20);            /* red */
+  --chart-5: oklch(0.65 0.20 340);           /* pink */
+
+  /* Sidebar — darker than base */
+  --sidebar: oklch(0.055 0.015 280);
+  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar-primary: oklch(0.62 0.24 295);
+  --sidebar-primary-foreground: oklch(0.96 0 0);
+  --sidebar-accent: oklch(0.16 0.02 280);
+  --sidebar-accent-foreground: oklch(0.96 0 0);
+  --sidebar-border: oklch(1 0 0 / 6%);
+  --sidebar-ring: oklch(0.62 0.24 295);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-feature-settings: "cv11", "ss01", "tnum";
+  }
+
+  /* All numeric data uses tabular figures so columns align */
+  .font-mono, code, kbd, pre, [data-numeric] {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+      Monaco, Consolas, monospace;
+    font-feature-settings: "tnum", "zero";
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.28 0.02 280);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.38 0.02 280);
+  }
+
+  /* Selection */
+  ::selection {
+    background: oklch(0.62 0.24 295 / 0.35);
+    color: var(--foreground);
+  }
+
+  /* Focus ring — subtle */
+  :focus-visible {
+    outline: 2px solid oklch(0.62 0.24 295 / 0.6);
+    outline-offset: 2px;
+  }
+}
+
+/* Density variables — set by DensityProvider via data-density */
+html[data-density="compact"] {
+  --row-py: 0.375rem;   /* 6px */
+  --row-text: 0.75rem;  /* 12px */
+  --card-p: 0.75rem;    /* 12px */
+}
+html[data-density="comfortable"],
+html:not([data-density]) {
+  --row-py: 0.625rem;   /* 10px */
+  --row-text: 0.8125rem;/* 13px */
+  --card-p: 1rem;       /* 16px */
+}
+html[data-density="relaxed"] {
+  --row-py: 1rem;       /* 16px */
+  --row-text: 0.875rem; /* 14px */
+  --card-p: 1.5rem;     /* 24px */
+}
+
+/* Utility classes built on the density variables */
+.density-row {
+  padding-top: var(--row-py);
+  padding-bottom: var(--row-py);
+  font-size: var(--row-text);
+}
+.density-card {
+  padding: var(--card-p);
+}
+
+/* Subtle pulse for newly arrived BLOCK rows */
+@keyframes pulse-block {
+  0%, 100% { background-color: transparent; }
+  30% { background-color: oklch(0.62 0.22 20 / 0.12); }
+  60% { background-color: oklch(0.62 0.22 20 / 0.05); }
+}
+.pulse-block {
+  animation: pulse-block 1.6s ease-out;
+}
+
+/* Ambient glow — accent radial — used on cards sparingly */
+.glow-accent {
+  box-shadow: 0 0 0 1px oklch(0.62 0.24 295 / 0.15),
+              0 0 24px -8px oklch(0.62 0.24 295 / 0.35);
+}
+
+/* Text gradients — used for headings only, sparingly */
+.text-gradient-accent {
+  background: linear-gradient(
+    135deg,
+    oklch(0.96 0 0) 0%,
+    oklch(0.75 0.15 295) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cmd-K key cap */
+kbd.cmd-k {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 6px;
+  border: 1px solid oklch(1 0 0 / 12%);
+  border-radius: 4px;
+  background: oklch(1 0 0 / 4%);
+  color: oklch(0.64 0.02 280);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* cmdk dialog styling */
+.cmdk-dialog {
+  position: fixed;
+  inset: 0;
+  background: oklch(0 0 0 / 55%);
+  backdrop-filter: blur(6px);
+  z-index: 50;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+.cmdk-panel {
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 48px -12px oklch(0 0 0 / 0.6);
+  width: 100%;
+  max-width: 620px;
+  overflow: hidden;
+}
+.cmdk-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+  font-size: 15px;
+  outline: none;
+}
+.cmdk-list {
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 6px;
+}
+.cmdk-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+.cmdk-group {
+  padding: 4px 0;
+}
+.cmdk-group [cmdk-group-heading] {
+  padding: 8px 10px 4px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+}
+.cmdk-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--foreground);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 80ms ease;
+}
+.cmdk-item[data-selected="true"] {
+  background: oklch(0.62 0.24 295 / 0.15);
+  color: var(--foreground);
+}
+.cmdk-item[data-selected="true"] .cmdk-shortcut {
+  color: oklch(0.96 0 0);
+}
+.cmdk-shortcut {
+  margin-left: auto;
+  color: var(--muted-foreground);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Bundle B: Range slider ---- */
+.slider-input { height: 100%; }
+.slider-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid oklch(0.62 0.24 295);
+  box-shadow: 0 0 0 3px oklch(0.62 0.24 295 / 0.2);
+  cursor: grab;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+.slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 5px oklch(0.62 0.24 295 / 0.25);
+}
+.slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
+.slider-input::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid oklch(0.62 0.24 295);
+  box-shadow: 0 0 0 3px oklch(0.62 0.24 295 / 0.2);
+  cursor: grab;
+}

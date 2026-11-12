@@ -1,0 +1,57 @@
+groups:
+  - name: fraud-detection
+    interval: 30s
+    rules:
+      - alert: KafkaConsumerLag
+        expr: fraud_kafka_consumed_total offset 1m > 0 and rate(fraud_kafka_consumed_total[1m]) == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Kafka consumer stalled"
+          description: "No messages consumed in 1m despite historical activity."
+
+      - alert: HighPredictionLatency
+        expr: histogram_quantile(0.95, rate(fraud_prediction_latency_seconds_bucket[5m])) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "p95 prediction latency > 100ms for 5m"
+          description: "Current p95: {{ $value | humanizeDuration }}"
+
+      - alert: VeryHighPredictionLatency
+        expr: histogram_quantile(0.95, rate(fraud_prediction_latency_seconds_bucket[5m])) > 0.5
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "p95 prediction latency > 500ms for 2m"
+          description: "Possible dependency degradation or overload."
+
+      - alert: HighDriftShare
+        expr: fraud_drift_share > 0.5
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Model drift above 50% — retrain recommended"
+          description: "drift_share={{ $value | humanizePercentage }}. Run scripts/retrain_trigger.py"
+
+      - alert: PredictionsDryingUp
+        expr: rate(fraud_predictions_total[5m]) < 0.01
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No predictions in 5+ minutes"
+          description: "Model may be dead or upstream producer stopped."
+
+      - alert: ModelSwapDetected
+        expr: count by (run_id) (fraud_model_info) > 1
+        for: 1m
+        labels:
+          severity: info
+        annotations:
+          summary: "Model version changed"
+          description: "New run_id detected: {{ $labels.run_id }}"

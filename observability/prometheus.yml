@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: fraud-detection-local
+    env: dev
+
+rule_files:
+  - /etc/prometheus/alert-rules.yml
+
+scrape_configs:
+  - job_name: fraud-scoring-service
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+        labels:
+          service: scoring
+
+  - job_name: prometheus-self
+    static_configs:
+      - targets: ['localhost:9090']

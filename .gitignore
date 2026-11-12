@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Data (large files — not committed)
+data/raw/
+data/processed/*.parquet
+data/processed/*.pt
+data/processed/eda/
+data/cases.db
+
+# MLflow
+mlruns/
+mlflow.db
+models/*.pkl
+models/*.pt
+models/*.json
+
+# Reports
+reports/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/package-lock.json
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+.docker/
+*.log
+
+# Backup files
+*.bak
+*.corrupted
+*.preF

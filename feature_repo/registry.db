@@ -1,0 +1,46 @@
+
+b
+B
+
+account_idSource account (nameOrig)"nameOrigJfraud_detection
+ü¯ÝÖÐñ°êãÿÞÖø ¶Ú
+F
+&
+__dummy"
+__dummy_idJfraud_detection
+ü¯ÝÖˆÆóéãÿÞÖø ¶Ú1"$6ce0839b-8dbc-42ac-9f55-eb92a843a2c2*äÿÞÖˆ¶à2á
+À
+account_featuresfraud_detection
+account_id"
+orig_count_1h"
+orig_count_6h"
+orig_count_24h"
+orig_sum_1h"
+orig_sum_6h"
+orig_sum_24h"
+orig_prior_avg_amount"
+orig_prior_max_amount"
+orig_amount_vs_avg"
+orig_amount_vs_max2€šž:š	timestampZRPC:\Users\Mohammad Althaf\Desktop\fraud-detection\data\processed\features.parquet¢account_features_source’ãÿÞÖ€þ×É"ãÿÞÖ˜ë„Ø@b
+nameOrig’latest
+ü¯ÝÖÈÞÙèãÿÞÖøÝøÙbà	timestampZRPC:\Users\Mohammad Althaf\Desktop\fraud-detection\data\processed\features.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢account_features_sourceªfraud_detection’ü¯ÝÖ¨ ¬µ"ü¯ÝÖ¸ÊœèŠ1
+
+fraud_detection
+ü¯ÝÖ°…¶¹ãÿÞÖèÈ•Ê’€
+ý
+account_featuresfraud_detection"feature_view*•
+ô
+account_featuresfraud_detection
+account_id"
+orig_count_1h"
+orig_count_6h"
+orig_count_24h"
+orig_sum_1h"
+orig_sum_6h"
+orig_sum_24h"
+orig_prior_avg_amount"
+orig_prior_max_amount"
+orig_amount_vs_avg"
+orig_amount_vs_max2€šž:Î	timestampZRPC:\Users\Mohammad Althaf\Desktop\fraud-detection\data\processed\features.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢account_features_source’ü¯ÝÖ¨ ¬µ"ü¯ÝÖ¸Êœè@b
+nameOrig’latest
+ü¯ÝÖÈÞÙèü¯ÝÖÈÞÙè2ü¯ÝÖˆÆóéB$4ff6ac1c-7f4d-462d-9b3d-b874689eb5e8

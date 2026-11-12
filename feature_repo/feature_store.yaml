@@ -1,0 +1,7 @@
+project: fraud_detection
+registry: registry.db
+provider: local
+entity_key_serialization_version: 3
+online_store:
+  type: redis
+  connection_string: "localhost:6379"
